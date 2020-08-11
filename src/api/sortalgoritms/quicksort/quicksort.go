@@ -28,35 +28,34 @@ func (quicksort QuickSort) Sort(array []int) (time.Time, time.Time, []int) {
 	now := time.Now()
 
 	if len(array) > 0 {
-		recursiverSort(array, 0, len(array)-1)
+		sort(array)
 	}
 
 	return now, time.Now(), array
 }
 
-func recursiverSort(array []int, start, end int) {
-	if (end - start) < 0 {
-		return
+func sort(a []int) []int {
+	if len(a) < 2 {
+		return a
 	}
 
-	pivot := array[end]
-	splitIntex := start
+	left, right := 0, len(a)-1
 
-	for i := start; i < end; i++ {
-		if array[i] < pivot {
-			if splitIntex < i {
-				aux := array[splitIntex]
-				array[splitIntex] = array[i]
-				array[i] = aux
-			}
+	pivot := len(a) - 1
 
-			splitIntex++
+	a[pivot], a[right] = a[right], a[pivot]
+
+	for i := range a {
+		if a[i] < a[right] {
+			a[left], a[i] = a[i], a[left]
+			left++
 		}
 	}
 
-	array[end] = array[splitIntex]
-	array[splitIntex] = pivot
+	a[left], a[right] = a[right], a[left]
 
-	recursiverSort(array, start, splitIntex-1)
-	recursiverSort(array, splitIntex+1, end)
+	sort(a[:left])
+	sort(a[left+1:])
+
+	return a
 }

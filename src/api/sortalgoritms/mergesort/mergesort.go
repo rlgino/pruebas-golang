@@ -27,9 +27,11 @@ func (Mergesort) Name() string {
 func (mergesort Mergesort) Sort(array []int) (time.Time, time.Time, []int) {
 	start := time.Now()
 
-	res := mergeSort(array)
+	if len(array) > 1 {
+		array = mergeSort(array)
+	}
 
-	return start, time.Now(), res
+	return start, time.Now(), array
 }
 
 func mergeSort(array []int) []int {

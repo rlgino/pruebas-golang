@@ -11,8 +11,8 @@ import (
 )
 
 func main() {
-	var array [200]int
-	size := len(array)
+	size := 200
+	array := make([]int, size)
 	for i := 0; i < size; i++ {
 		array[i] = rand.Intn(size)
 	}
@@ -22,7 +22,7 @@ func main() {
 
 	// Buble sort
 	bubleSort := bublesort.New()
-	start, end, _ = bubleSort.Sort(array[:])
+	start, end, _ = bubleSort.Sort(array)
 	elapsed = end.Sub(start)
 
 	fmt.Println(bubleSort.Name())
@@ -32,7 +32,7 @@ func main() {
 
 	// Merge sort
 	mergesort := mergesort.New()
-	start, end, _ = mergesort.Sort(array[:])
+	start, end, _ = mergesort.Sort(array)
 	elapsed = end.Sub(start)
 
 	fmt.Println(mergesort.Name())
@@ -42,7 +42,7 @@ func main() {
 
 	// Quick sort
 	quicksort := quicksort.New()
-	start, end, _ = quicksort.Sort(array[:])
+	start, end, _ = quicksort.Sort(array)
 	elapsed = end.Sub(start)
 
 	fmt.Println(quicksort.Name())
